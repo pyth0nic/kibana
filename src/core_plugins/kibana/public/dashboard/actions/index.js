@@ -11,4 +11,5 @@ export {
 export {
   updateDescription,
   updateTitle,
+  UpdateLink,
 } from './metadata';

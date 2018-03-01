@@ -4,6 +4,7 @@ export const deletePanel = createAction('DELETE_PANEL');
 
 export const updatePanel = createAction('UPDATE_PANEL');
 export const resetPanelTitle = createAction('RESET_PANEl_TITLE');
+export const resetPanelLink = createAction('RESET_PANEL_LINK');
 export const setPanelTitle = createAction('SET_PANEl_TITLE',
   /**
    * @param title {string}
@@ -12,6 +13,13 @@ export const setPanelTitle = createAction('SET_PANEl_TITLE',
   (title, panelIndex) => ({ title, panelIndex })
 );
 
+export const setPanelLink = createAction('SET_PANEL_LINK',
+  /**
+   * @param link {string}
+   * @param panelIndex {string}
+   */
+  (link, panelIndex) => ({ link, panelIndex })
+);
 
 function panelArrayToMap(panels) {
   const panelsMap = {};

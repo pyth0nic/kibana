@@ -33,6 +33,7 @@ export function PanelHeader({ title, actions, isViewOnlyMode, hidePanelTitles })
 PanelHeader.propTypes = {
   isViewOnlyMode: PropTypes.bool,
   title: PropTypes.string,
+  link: PropTypes.string,
   actions: PropTypes.node,
   hidePanelTitles: PropTypes.bool.isRequired,
 };

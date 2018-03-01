@@ -420,7 +420,8 @@ export class DashboardStateManager {
    */
   addNewPanel(id, type) {
     const maxPanelIndex = PanelUtils.getMaxPanelIndex(this.getPanels());
-    const newPanel = createPanelState(id, type, maxPanelIndex, this.getPanels());
+    const newPanel = createPanelState(id, type, maxPanelIndex, this.getPanels(),"");
+    console.log(newPanel);
     this.getPanels().push(newPanel);
     this.saveState();
   }

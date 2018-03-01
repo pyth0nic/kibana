@@ -10,6 +10,7 @@ import {
   minimizePanel,
   resetPanelTitle,
   setPanelTitle,
+  setPanelLink,
 } from '../../actions';
 
 import {
@@ -23,8 +24,10 @@ const mapStateToProps = ({ dashboard }, { panelId }) => {
   const embeddable = getEmbeddable(dashboard, panelId);
   const panel = getPanel(dashboard, panelId);
   const embeddableTitle = embeddable ? embeddable.title : '';
+  const embeddableLink = embeddable ? embeddable.link : '';
   return {
     panelTitle: panel.title === undefined ? embeddableTitle : panel.title,
+    panelLink: panel.link === undefined ? embeddableLink : panel.link,
     editUrl: embeddable ? getEmbeddableEditUrl(dashboard, panelId) : null,
     isExpanded: getMaximizedPanelId(dashboard) === panelId,
   };
@@ -44,15 +47,17 @@ const mapDispatchToProps = (dispatch, { embeddableFactory, panelId }) => ({
   onMinimizePanel: () => dispatch(minimizePanel()),
   onResetPanelTitle: () => dispatch(resetPanelTitle(panelId)),
   onUpdatePanelTitle: (newTitle) => dispatch(setPanelTitle(newTitle, panelId)),
+  onUpdatePanelLink: (newLink) => dispatch(setPanelLink(newLink, panelId)),
 });
 
 const mergeProps = (stateProps, dispatchProps) => {
-  const { isExpanded, editUrl, panelTitle } = stateProps;
+  const { isExpanded, editUrl, panelTitle, panelLink } = stateProps;  
   const { onMaximizePanel, onMinimizePanel, ...dispatchers } = dispatchProps;
   const toggleExpandedPanel = () => isExpanded ? onMinimizePanel() : onMaximizePanel();
 
   return {
     panelTitle,
+    panelLink,
     toggleExpandedPanel,
     isExpanded,
     editUrl,

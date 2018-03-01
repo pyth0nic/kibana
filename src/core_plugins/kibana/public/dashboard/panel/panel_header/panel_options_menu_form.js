@@ -9,9 +9,14 @@ import {
   keyCodes,
 } from 'ui_framework/services';
 
-export function PanelOptionsMenuForm({ title, onReset, onUpdatePanelTitle, onClose }) {
+export function PanelOptionsMenuForm({ title, link, onReset, onUpdatePanelTitle, onUpdatePanelLink, onClose }) {
+  
   function onInputChange(event) {
     onUpdatePanelTitle(event.target.value);
+  }
+
+  function onLinkInputChange(event) {
+    onUpdatePanelLink(event.target.value);
   }
 
   function onKeyDown(event) {
@@ -35,6 +40,16 @@ export function PanelOptionsMenuForm({ title, onReset, onUpdatePanelTitle, onClo
         onChange={onInputChange}
         onKeyDown={onKeyDown}
       />
+      <label className="kuiFormLabel" htmlFor="panelLinkInput">Url Input</label>
+      <input
+        id="panelLinkInput"
+        name="min"
+        type="text"
+        className="kuiTextInput"
+        value={link}
+        onChange={onLinkInputChange}
+        onKeyDown={onKeyDown}
+      />
       <KuiButton
         buttonType="hollow"
         onClick={onReset}
@@ -47,7 +62,9 @@ export function PanelOptionsMenuForm({ title, onReset, onUpdatePanelTitle, onClo
 
 PanelOptionsMenuForm.propTypes = {
   title: PropTypes.string,
+  link: PropTypes.string,
   onUpdatePanelTitle: PropTypes.func.isRequired,
+  onUpdatePanelLink: PropTypes.func.isRequired,
   onReset: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
 };
